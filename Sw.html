@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        h1{
+            margin: 10rem 0 0 43rem;
+            
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .time{
+
+             color:rgb(41, 41, 42);
+        }
+
+        .sw{
+            margin: 4rem 0 0 39rem;
+            font-size: 35px;
+        }
+
+        .text{
+            font-size: 15px;
+        }
+
+        button{
+            margin-top: 2rem;
+            width: 8rem;
+            height: 2rem;
+            border: 1px solid rgb(80, 76, 76);
+            border-radius: 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 15px;
+            
+        }
+
+       
+         #stop:hover{
+             
+            background-color: red;
+            border: 1px solid red;
+            
+         }
+         #start:hover{
+            background-color: rgb(59, 219, 59);
+            border: 1px solid rgb(37, 189, 37);
+         }
+
+         #reset:hover{
+            background-color: rgb(22, 228, 26);
+            border: 1px solid rgb(37, 189, 37);
+         }
+         #reset:focus{
+            background-color: rgb(57, 207, 34);
+         }
+
+         #start:focus{
+            background-color: rgb(57, 207, 34);
+         }       
+         #stop:focus{
+            background-color: rgb(207, 34, 34);
+         }
+        </style>
+</head>
+<body>
+
+<h1>STOP WATCH</h1>
+ 
+<div class="sw">
+  <div class="time">
+
+   <span id="hr"> 0 0</span>
+   <span class="text">HOUR</span>
+
+   <span id="minute"> 0 0</span>
+   <span  class="text">MINUTES</span>
+
+  <span id="sec"> 0 0</span>
+  <span  class="text">Seconds</span>
+ 
+   <span id="count">0 0</span>
+ </div>
+
+ <div class="buttons">
+
+  <button id="start">Start</button>
+
+  <button id="stop">Stop</button>
+
+  <button id="reset">Reset</button>
+
+ </div>
+
+</div>
+
+
+<script>
+ 
+    let startbtn = document.getElementById('start')
+
+    let stopbtn = document.getElementById('stop')
+
+    let resetbtn = document.getElementById('reset')
+
+
+    let hour = 0 ;
+
+    let minute =  0;
+
+    let second =  0;
+
+    let count = 0;
+
+    startbtn.addEventListener('click',function () {
+
+        timer = true;
+
+        stopwatch();
+
+    });
+
+    resetbtn.addEventListener('click',function(){
+
+        let hour = 0 + "0";
+
+        let minute = 0 + "0";
+
+        let second =0 + "0";
+
+        let count = 0 + "0";
+
+        document.getElementById('hr').innerHTML = hour;
+
+        document.getElementById('minute').innerHTML = minute;
+
+        document.getElementById('sec').innerHTML = second;
+
+        document.getElementById('count').innerHTML = count;
+    });
+
+
+
+stopbtn.addEventListener('click',function(){
+
+        timer = false;
+    });
+
+function stopwatch(){
+
+    if(timer){
+        count ++;
+
+        if(count == 100){
+            second++;
+            count=0;
+        }
+
+        if(second == 60){
+            minute ++;
+            second=0;
+        }
+
+        if(minute == 60){
+            hour++;
+            minute=0;
+            second=0;
+        }
+
+        let hrstring = hour;
+
+        let minstring = minute;
+
+        let secstring = second;
+
+        let countstring=count;
+
+        if(hour < 10){
+            hrstring ="0" + hrstring;
+        }
+
+        if(minute < 10){
+            minstring = "0"+ minstring;
+        }
+
+        if(second < 10){
+            secstring = "0" + secstring;
+        }
+        if(count<10){
+            countstring="0"+countstring;
+        }
+
+        document.getElementById('hr').innerHTML = hrstring;
+
+        document.getElementById('minute').innerHTML = minstring;
+
+        document.getElementById('sec').innerHTML = secstring;
+
+        document.getElementById('count').innerHTML = countstring;
+
+        setTimeout(stopwatch,10);
+    }
+}
+
+
+</script>
+</body>
+</html>
